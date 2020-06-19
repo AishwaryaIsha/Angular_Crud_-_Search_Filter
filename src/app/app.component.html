@@ -1,0 +1,54 @@
+<hr>
+<div class="col-sm-3">
+<div class="form-group">
+<label>Product Name</label>
+<input class="form-control" type="text" #filterName name="filterName" [(ngModel)]="product.name" />
+</div>
+</div>
+<div class="col-sm-3">
+<div class="form-group">
+<label>Product cost</label>
+<input class="form-control" type="text" #filterCost name="filterCost" [(ngModel)]="product.cost" />
+</div>
+</div>
+<div class="col-sm-3">
+<div class="form-group">
+<label>Product image</label>
+<input type="text" class="form-control" #filterImage name="filterImage" [(ngModel)]="product.pic" />
+</div>
+</div>
+<div class="col-sm-3">
+<div class="form-group">
+<button (click)="AddProduct()">Add Product</button>
+<!-- clear input after updating -->
+<button (click)="clearInput()">RESET</button>
+</div>
+</div>
+
+
+
+<input type="text" class="form-control" placeholder="Search" [(ngModel)]="query" id="listSearch">
+
+<!-- <div class="panel panel-default col-xs-12 col-sm-11" *ngFor="let lock of locked | LockFilter: query">
+    <input type="checkbox" (change)="openModal($event, lock)" class="check" id="{{lock.ID}}">
+    <label [for]="lock.ID" class="check-label"></label> 
+    <h3 class="card-text name">{{lock.User}}</h3>
+    <h3 class="card-text auth">{{lock.AuthID}}</h3>
+    <h3 class="card-text form">{{lock.FormName}}</h3>
+    <h3 class="card-text win">{{lock.WinHandle}}</h3>
+</div> -->
+
+<div class="panel panel-default col-xs-12 col-sm-11" *ngFor="let x of products | LockFilter: query">
+  <table>
+    <tr>
+    <td><label [for]="x.ID" class="check-label"></label></td>
+    <td class="card-text name" width="40%">{{x?.name}}</td>
+    <td class="card-text auth" width="30%">{{x?.cost}}</td>
+    <td><img src="products.pic" width="50" height="50" margin-right="30%"></td>
+    <td><button width="20%" (click)="UpdateProduct(x)" class="btn btn-small btn-primary">Edit</button></td>
+    <td><button width="20%" (click)="DeleteProduct(x)" class="btn btn-small btn-alert">Delete</button></td>
+    </tr>
+  </table>
+</div>
+
+<router-outlet></router-outlet>
